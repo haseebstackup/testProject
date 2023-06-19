@@ -1,0 +1,34 @@
+<%= stylesheet_link_tag "compaigns", "data-turbo-track": "reload" %>
+<div class="body">
+  <div style="text-align: right;">
+    <%= link_to 'New Campaign', new_compaign_path,class:"btn tomato-clr txt-white mTable camp-btn" %>
+    <%= link_to 'Novice Users list', users_path,class:"btn tomato-clr txt-white mTable camp-btn" %>
+  </div>
+  <div class="container" id="TabContainer">
+    <h1 class="txt-tomato text-center m-4">Campaigns</h1>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Title</th>
+          <th>Purpose</th>
+          <th>Estimated Duration</th>
+          <th>Creator</th>
+          <th colspan="3">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @compaigns.each do |compaign| %>
+          <tr>
+            <td><%= compaign.title %></td>
+            <td><%= compaign.purpose %></td>
+            <td><%= compaign.duration %></td>
+            <td><%= compaign.expert.username %></td>
+            <td><%= link_to 'Show', compaign, class:"btn tomato-clr txt-white mTable" %></td>
+            <td><%= link_to 'Edit', edit_compaign_path(compaign), class:"btn tomato-clr txt-white mTable" %></td>
+            <td><%= link_to 'Destroy', compaign, data: { turbo_method: :delete ,turbo_confirm: 'Are you sure?' }, class:"btn tomato-clr txt-white mTable" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

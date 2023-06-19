@@ -1,0 +1,13 @@
+  <%= stylesheet_link_tag "campform", "data-turbo-track": "reload" %>
+<center>
+  <%= form_with model: [@compaign, @discussion_topic], class:"form-main shadow" do |form| %>
+    <div class="field form-outline mb-4">
+      <%= form.label :title,class:"form-label" %> <br>
+      <%= form.text_field :title,class:"form-control" %>
+    </div>
+    <br>
+    <div class="actions d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+      <%= form.submit "Save", class: "btn tomato-clr txt-white px-5" %>
+    </div>
+  <% end %>
+</center>

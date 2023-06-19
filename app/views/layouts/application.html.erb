@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Compaignhub</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg tomato-clr justify-content-around p-2 sticky-top">
+      <%= link_to 'CAMPAIGN HUB', root_path, class: "navbar-brand active txt-white px-5" %>
+      <% if user_signed_in? %>
+        <div class="search-holder d-flex">
+          <form action="/compaigns/search" accept-charset="UTF-8" method="get">
+            <input type="text" class="w-100 search-bar" placeholder="Search Campaign By Tag" name="tag_name" id="tag_name">
+            <input type="submit" name="commit" value="Search" class="btn btn-search">
+          </form>
+        </div>
+      <% end %>
+
+
+      <div id="user_nav">
+        <% if user_signed_in? %>
+          <%= link_to 'Profile', user_path(current_user), :class => "btn btn-light txt-tomato "  %>
+          <%= link_to 'Sign out', destroy_user_session_path, :class => "btn btn-light txt-tomato ",  data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+        <% else %>
+        
+         <%= link_to 'Sign up', new_user_registration_path, :class => "btn btn-light txt-tomato " %>
+          <%= link_to 'Sign in', new_user_session_path, :class => "btn btn-light txt-tomato" %>
+        <% end %>
+      </div>
+    </nav>
+    <p class="notice txt-tomato"><%= notice %></p>
+    <p class="alert txt-tomato"><%= alert %></p>
+
+    <%= yield %>
+
+<div class="container-fluid g-0 ">
+  <footer class="text-center text-white tomato-clr m-0" >
+    <div class="text-center p-3 tomato-clr">
+      © 2023 Copyright
+      <h6 class="text-white">STACKUP TECHNOLOGIES</h6>
+    </div>
+  </footer>
+</div>
+
+  </body>
+</html>

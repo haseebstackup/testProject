@@ -1,0 +1,145 @@
+<%= stylesheet_link_tag "compaigns", "data-turbo-track": "reload" %>
+<%= javascript_include_tag 'hidden' %>
+<h2 class="txt-tomato text-center m-4">Campaign Attributes</h2>
+<center>
+  <table class="table DisTable">
+    <thead class="thead-light">
+      <tr>
+        <th>Title</th>
+        <th>Purpose</th>
+        <th>Estimated Duration</th>
+        <th>Creator</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @compaign.title %></td>
+        <td><%= @compaign.purpose %></td>
+        <td><%= @compaign.duration %></td>
+        <td><%= @compaign.expert.username %></td>
+      </tr>
+    </tbody>
+  </table>
+</center>
+<h2 class="txt-tomato text-center m-4">Todos</h2>
+<% if @compaign.to_dos.any? %>
+  <center>
+    <table class="table DisTable">
+      <thead class="thead-light">
+        <tr>
+          <th>Tasks</th>
+          <th >Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @compaign.to_dos.each do |todo| %>
+          <tr>
+            <td><%= todo.task %> </td>
+            <td><%= todo.status %> </td>
+            <td>
+              <%= link_to 'Edit', edit_compaign_to_do_path(@compaign,todo), class:"btn tomato-clr txt-white mTable" %>
+              <%= link_to 'Destroy', compaign_to_do_path(@compaign,todo), data: { turbo_method: :delete ,turbo_confirm: 'Are you sure?' }, class:"btn tomato-clr txt-white mTable"%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </center>
+<% end %>
+
+<div class="bottom-btn">
+  <%= link_to 'New ToDo', new_compaign_to_do_path(@compaign), class:"btn tomato-clr txt-white mTable" %>
+</div>
+<h2 class="txt-tomato text-center m-4">Discussion Topics</h2>
+<% if @compaign.discussion_topics.any? %>
+  <center>
+    <table class="table DisTable">
+      <thead class="thead-light">
+        <tr>
+          <th>Title</th>
+          <th >Creator</th>
+          <th colspan="3">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @compaign.discussion_topics.each do |topic| %>
+          <tr>
+            <td><%= topic.title %></td>
+            <td><%= topic.novice.username %></td>
+            <td> <%= link_to 'Show', compaign_discussion_topic_path(@compaign,topic), class:"btn tomato-clr txt-white mTable" %>
+            </td>
+            <td>  <%= link_to 'Edit', edit_compaign_discussion_topic_path(@compaign,topic), class:"btn tomato-clr txt-white mTable" %>
+            </td>
+            <td>  <%= link_to 'Destroy', compaign_discussion_topic_path(@compaign,topic), data: { turbo_method: :delete ,turbo_confirm: 'Are you sure?' }, class:"btn tomato-clr txt-white mTable" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </center>
+<% end %>
+<div class="bottom-btn">
+  <%= link_to 'New Discussion Topic', new_compaign_discussion_topic_path(@compaign), class:"btn tomato-clr txt-white mTable" %>
+</div>
+<h2 class="txt-tomato text-center m-4">Tags</h2>
+<% if @compaign.tags.any? %>
+  <center>
+    <table class="table DisTable">
+      <thead class="thead-light">
+        <tr>
+          <th>TagID</th>
+          <th >TagName</th>
+          <th>SuperTag</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @compaign.tags.each do |tag| %>
+          <tr>
+            <td><%= tag.id %></td>
+            <td><span class=" btn btn-success "><%= tag.name %></span> </td>
+            <td ><span class=" btn btn-success "><%= tag.supertag&.name || '-' %></span></td>
+            <td><%= link_to 'Destroy', compaign_tag_path(@compaign,tag), data: { turbo_method: :delete ,turbo_confirm: 'Are you sure?' }, class:"btn tomato-clr txt-white mTable" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </center>
+<% end %>
+<div class="bottom-btn m-4">
+  <button class="btn tomato-clr txt-white mTable" onclick="dtagform()" >New Tag</button>
+</div>
+<div id="tagdisplay" style="display:none">
+  <%= render 'tags/form' %>
+</div>
+<h2 class="txt-tomato text-center m-4">Comments</h2>
+<% if @compaign.comments.any? %>
+  <center>
+    <table class="table DisTable">
+      <thead class="thead-light">
+        <tr>
+          <th>Commenter</th>
+          <th>Comment</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @compaign.comments.each do |comment| %>
+          <tr>
+            <td><%= comment.user.username %></td>
+            <td><%= comment.title %></td>
+            <td><%= link_to 'Destroy', compaign_comment_path(@compaign,comment), data: { turbo_method: :delete ,turbo_confirm: 'Are you sure?' }, class:"btn tomato-clr txt-white mTable" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </center>
+<% end %>
+<div class="bottom-btn m-4">
+  <button class="btn tomato-clr txt-white mTable" onclick="dcomform()">New Comment</button>
+</div>
+<div id="commentdisplay" style="display:none">
+  <%= render 'comments/form' %>
+</div>

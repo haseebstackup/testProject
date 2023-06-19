@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag "compaigns", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "campform", "data-turbo-track": "reload" %>
+<div class="body">
+  <div class="container" id="TabContainer">
+    <h1 class="txt-tomato text-center">Novice Users</h1>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>User ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th colspan="2">Actions</th>               
+        </tr>
+      </thead>
+      <tbody>
+        <% @novice_users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td><%= user.status %></td>
+            <td><a class="btn tomato-clr txt-white" href="users/<%= user.id %>/updatestatusshow">Update Status</a></td>
+            <td><%= link_to 'Destroy', user_path(user), data: { turbo_method: :delete ,turbo_confirm: 'Are you sure?' }, class:"btn tomato-clr txt-white" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

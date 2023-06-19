@@ -1,0 +1,64 @@
+<%= stylesheet_link_tag "compaigns", "data-turbo-track": "reload" %>
+<%= javascript_include_tag 'hidden' %>
+
+<h2 class="txt-tomato text-center m-4">Discussion Topic</h2>
+<center>
+  <table class="table DisTable">
+    <thead class="thead-light">
+      <tr>
+        <th>Title</th>
+        <th>Creator</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @discussion_topic.title %></td>
+        <td><%= @discussion_topic.novice.username %></td>
+      </tr>
+    </tbody>
+  </table>
+</center>
+<h2 class="txt-tomato text-center m-4">Comments</h2>
+<% if @discussion_topic.comments.any? %>
+  <center>
+    <table class="table DisTable">
+      <thead class="thead-light">
+        <tr>
+          <th>Commenter</th>
+          <th>Comment</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @discussion_topic.comments.each do |comment| %>
+          <tr>
+            <td><%= comment.user.username %></td>
+            <td><%= comment.title %></td>
+            <td>  <%= link_to 'Destroy', compaign_discussion_topic_comment_path(@compaign,@discussion_topic,comment), data: { turbo_method: :delete ,turbo_confirm: 'Are you sure?' }, class:"btn tomato-clr txt-white mTable" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </center>
+<% end %>
+<%= stylesheet_link_tag "campform", "data-turbo-track": "reload" %>
+<div class="bottom-btn m-4">
+  <button class="btn tomato-clr txt-white mTable" onclick="ddcomform()">New Comment</button>
+</div>
+<div id="dcommentdisplay" style="display:none">
+  <center>
+    <%= form_with(model: [@compaign, @discussion_topic, Comment.new],class:"form-main shadow", url: compaign_discussion_topic_comments_path(@compaign, @discussion_topic))  do |form| %>
+      <div class="field form-outline mb-4">
+        <%= form.text_field :title,class:"form-control" %>
+      </div>
+      <br>
+      <div class="actions d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+        <%= form.submit "Save Comment", class: "btn tomato-clr txt-white px-5" %>
+      </div>
+    <% end %>
+  </center>
+</div>
+<div class="back-btn">
+  <%= link_to 'Back', compaign_path(@compaign), class:"btn tomato-clr txt-white text-center px-5" %>
+</div>

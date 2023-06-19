@@ -1,0 +1,30 @@
+<%= stylesheet_link_tag "campform", "data-turbo-track": "reload" %>
+<center>
+  <%= form_with model: compaign, class:"frm-center shadow form-main " do |form| %>
+    <% if compaign.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
+        <ul>
+          <% compaign.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field form-outline mb-4">
+      <%= form.label :title,class:"form-label" %> <br>
+      <%= form.text_field :title,class:"form-control" %>
+    </div>
+    <div class="field">
+      <%= form.label :purpose,class:"form-label" %> <br>
+      <%= form.text_area :purpose,class:"form-control" %>
+    </div>
+    <div class="field">
+      <%= form.label :duration,class:"form-label" %> <br>
+      <%= form.select :duration, options_for_select(['within 1 week', 'within 1 month', 'within 3 months']),class:"form-control " %>
+    </div>
+    <div class="actions d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+      <%= form.submit "Save", class: "btn tomato-clr btn-lg txt-white px-5" %>
+    </div>
+  <% end %>
+</center>

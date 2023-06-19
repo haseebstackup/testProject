@@ -1,0 +1,15 @@
+  
+<div class="container" id="TabContainer">
+  <center>
+    <h3 class="txt-tomato text-center">Update Status of Novice User</h3>
+    <%= form_with url: update_status_user_path(@user), method: "patch", class:"form-main shadow" do |f| %>
+      <div class="field form-outline mb-4">
+        <%= f.label :status,class:"form-label" %> <br>
+        <%= f.select :status , ['qualified','not qualified','banned'],class:"form-control droplist" %>
+      </div>
+      <div class="actions d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+        <%= f.submit "Save", class: "btn tomato-clr btn-lg txt-white px-5" %>
+      </div>
+    <% end %>
+  </center>
+</div>
