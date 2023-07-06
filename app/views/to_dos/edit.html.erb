@@ -1,5 +1,20 @@
 <h1 class="txt-tomato text-center m-4">Edit Todos</h1>
-<%= render 'form' %>
+<%= stylesheet_link_tag "campform", "data-turbo-track": "reload" %>
+<center>
+  <%= form_with model: [@compaign, @todo], class:"form-main shadow" do |f| %>
+    <div class="field form-outline mb-4">
+      <%= f.label :task,class:"form-label" %> <br>
+      <%= f.text_field :task,class:"form-control" %>
+    </div>
+    <div class="field form-outline mb-4 ">
+      <%= f.label :status,class:"form-label" %> <br>
+      <%= f.select :status , ['Completed','Yet todo'],class:"form-control droplist" %>
+    </div>
+    <div class="actions d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+      <%= f.submit"Save", class: "btn tomato-clr txt-white px-5" %>
+    </div>
+  <% end %>
+</center>
 <div class="back-btn">
   <%= link_to 'Back', compaign_path(@compaign), class:"btn tomato-clr txt-white text-center px-5" %>
 </div>

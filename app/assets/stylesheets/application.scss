@@ -12,51 +12,64 @@
  *
  *= require_tree .
  *= require_self
+
  */
- @import "bootstrap";
+@import "bootstrap";
 
+table,
+th,
+td {
+  border: 1px solid
+}
 
- table,th,td{
-    border: 1px solid
-  }
-  footer{
-    margin-top:20px;
-  }
-  nav{
-    padding:20px 40px;
-    justify-content: space-between !important;
-  }
-  a.btn{
-    color:white;
-    margin: 0px 5px ;
-    padding:5px 20px;
-  }
-  .tomato-clr{
-    background-color:#FF6347 !important;
-  }
-  .txt-white{
-    color:white !important;
-  }
-  .txt-tomato{
-    color:#FF6347 !important;
-  }
-  .back-btn{
-    text-align: center;
-    margin: 10px 0px;
-  }
-  .bck{
-padding: 10px 50px !important;
-  }
-  .search-bar{
-    width: 20vw !important;
-    border-radius: 20px;
-    color: black !important;
-    border:none;
-    padding: 2px 5px;
-  }
-  .btn-search{
-    color: #FF6347 !important;
-    background-color:white !important;
-    font-size: 13px;
-    border-radius:5px
-  }
+footer {
+  margin-top: 20px;
+}
+
+nav {
+  padding: 20px 40px;
+  justify-content: space-between !important;
+}
+
+a.btn {
+  color: white;
+  margin: 0px 5px;
+  padding: 5px 20px;
+}
+
+.tomato-clr {
+  background-color: #FF6347 !important;
+}
+
+.txt-white {
+  color: white !important;
+}
+
+.txt-tomato {
+  color: #FF6347 !important;
+}
+
+.back-btn {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.bck {
+  padding: 10px 50px !important;
+}
+
+.search-bar {
+  width: 20vw !important;
+  border-radius: 20px;
+  color: black !important;
+  border: none;
+  padding: 2px 5px;
+}
+
+.btn-search {
+  color: #FF6347 !important;
+  background-color: white !important;
+  font-size: 13px;
+  border-radius: 5px
+}
+

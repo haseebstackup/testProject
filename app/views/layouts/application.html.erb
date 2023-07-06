@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Compaignhub</title>
+    <link rel="icon" href="https://scontent.flhe5-1.fna.fbcdn.net/v/t39.30808-6/350015915_198214636504195_6442841241359991837_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=174925&_nc_ohc=A0NwiiCxo2YAX_RW4yB&_nc_ht=scontent.flhe5-1.fna&oh=00_AfA20oDOBExM1xkKEtIDr9P6SCgoxKkUzyn5hs76Pdw30A&oe=649762A5">
+    <title>Campaign Hub</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,7 +17,7 @@
       <% if user_signed_in? %>
         <div class="search-holder d-flex">
           <form action="/compaigns/search" accept-charset="UTF-8" method="get">
-            <input type="text" class="w-100 search-bar" placeholder="Search Campaign By Tag" name="tag_name" id="tag_name">
+            <input type="text" class="w-100 search-bar" placeholder="Search Campaign By Tag" name="tag_name" id="tag_name" style="text-align:center">
             <input type="submit" name="commit" value="Search" class="btn btn-search">
           </form>
         </div>
@@ -37,19 +38,25 @@
         <% end %>
       </div>
     </nav>
-    <p class="notice txt-tomato"><%= notice %></p>
-    <p class="alert txt-tomato"><%= alert %></p>
-
+   <!--- <% if flash.any? %>
+      <script>
+        $(document).ready(function() {
+          $('#flashModal').modal('show');
+        });
+      </script>
+    <% end %>
+    <%= render 'layouts/flash_modal' %> -->
+    <p class="notice" style="color:green"><%= notice %></p>
+    <p class="alert" style="color:red"><%= alert %></p>
     <%= yield %>
-
-<div class="container-fluid g-0 ">
-  <footer class="text-center text-white tomato-clr m-0" >
-    <div class="text-center p-3 tomato-clr">
-      © 2023 Copyright
-      <h6 class="text-white">STACKUP TECHNOLOGIES</h6>
+    <div class="container-fluid g-0 ">
+      <footer class="text-center text-white tomato-clr m-0" >
+        <div class="text-center p-3 tomato-clr">
+          © 2023 Copyright
+          <h6 class="text-white">STACKUP TECHNOLOGIES</h6>
+        </div>
+      </footer>
     </div>
-  </footer>
-</div>
 
   </body>
 </html>

@@ -10,17 +10,6 @@ class UsersController < ApplicationController
   def show
   end
 
-  def edit
-  end
-
-  def update
-    if @user.update(username: params[:username],email: params[:email],password: params[:password],profession: params[:profession],service: params[:service])
-      redirect_to user_path(@user), notice: 'User was successfully updated.'
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @user.destroy
     redirect_to root_path, notice: 'User was successfully destroyed.'

@@ -48,9 +48,16 @@
   </center>
 <% end %>
 
-<div class="bottom-btn">
-  <%= link_to 'New ToDo', new_compaign_to_do_path(@compaign), class:"btn tomato-clr txt-white mTable" %>
+<div class="bottom-btn m-4">
+  <button class="btn tomato-clr txt-white mTable" onclick="dtodoform()" >New ToDo</button>
 </div>
+<div id="tododisplay" style="display:none">
+  <%= render 'to_dos/form' %>
+</div>
+
+<!---<div class="bottom-btn">
+  <%= link_to 'New ToDo', new_compaign_to_do_path(@compaign), class:"btn tomato-clr txt-white mTable" %>
+</div> -->
 <h2 class="txt-tomato text-center m-4">Discussion Topics</h2>
 <% if @compaign.discussion_topics.any? %>
   <center>

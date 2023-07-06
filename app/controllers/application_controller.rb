@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Pundit
+  include Pundit::Authorization
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -8,8 +8,9 @@ class ApplicationController < ActionController::Base
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :type, :status, :profession, :service])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :profession, :service])
   end
-
+  
   private
   def user_not_authorized
     flash[:alert] = 'You are not authorized to perform this action.'
