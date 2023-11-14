@@ -1,6 +1,10 @@
 # Use an official Ruby runtime as a parent image
 FROM ruby:2.7.3
 
+# Install nodejs and yarn (for JavaScript runtime)
+RUN apt-get update && apt-get install -y \
+    nodejs \
+    yarn
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
